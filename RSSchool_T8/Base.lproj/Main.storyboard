@@ -1,24 +1,128 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fqY-zc-Mft">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Artist-->
+        <scene sceneID="wys-ip-RHm">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="Artist" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3LZ-QE-i3F" customClass="ArtistViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gq8-w2-ci1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiG-SO-5w5" customClass="CanvasView">
+                                <rect key="frame" x="57" y="128" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="82E-0y-EAM"/>
+                                    <constraint firstAttribute="width" constant="300" id="adT-Gz-rjU"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7V-Qp-bOv" customClass="MyButton">
+                                <rect key="frame" x="20" y="478" width="163" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="163" id="93q-ME-0Bg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                <state key="normal" title="Open Palette">
+                                    <color key="titleColor" name="LightGreenSea"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHS-ZR-0yY" customClass="MyButton">
+                                <rect key="frame" x="278" y="532" width="95" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="Kvk-KH-KRT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                <state key="normal" title="Share">
+                                    <color key="titleColor" name="LightGreenSea"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-qf-0RB" customClass="MyButton">
+                                <rect key="frame" x="20" y="532" width="151" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="151" id="uTW-qh-3wX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                <state key="normal" title="Open Timer">
+                                    <color key="titleColor" name="LightGreenSea"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-1f-DZl" customClass="MyButton">
+                                <rect key="frame" x="282" y="478" width="91" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="91" id="4R5-UU-ers"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="18"/>
+                                <state key="normal" title="Draw">
+                                    <color key="titleColor" name="LightGreenSea"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xNO-oj-nv4"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xNO-oj-nv4" firstAttribute="trailing" secondItem="8e1-1f-DZl" secondAttribute="trailing" constant="41" id="1qX-7A-c4R"/>
+                            <constraint firstItem="8e1-1f-DZl" firstAttribute="centerY" secondItem="M7V-Qp-bOv" secondAttribute="centerY" id="9UP-vu-3oD"/>
+                            <constraint firstItem="cHS-ZR-0yY" firstAttribute="trailing" secondItem="8e1-1f-DZl" secondAttribute="trailing" id="NNc-L3-hcX"/>
+                            <constraint firstItem="MiG-SO-5w5" firstAttribute="centerX" secondItem="Gq8-w2-ci1" secondAttribute="centerX" id="PQ3-g3-asi"/>
+                            <constraint firstItem="Mh7-qf-0RB" firstAttribute="top" secondItem="M7V-Qp-bOv" secondAttribute="bottom" constant="20" id="S4p-LT-uxF"/>
+                            <constraint firstItem="cHS-ZR-0yY" firstAttribute="centerY" secondItem="Mh7-qf-0RB" secondAttribute="centerY" id="U7t-DK-YJo"/>
+                            <constraint firstItem="Mh7-qf-0RB" firstAttribute="leading" secondItem="M7V-Qp-bOv" secondAttribute="leading" id="ahz-Gn-kSb"/>
+                            <constraint firstItem="MiG-SO-5w5" firstAttribute="top" secondItem="xNO-oj-nv4" secondAttribute="top" constant="40" id="gnK-WE-BXw"/>
+                            <constraint firstItem="M7V-Qp-bOv" firstAttribute="top" secondItem="MiG-SO-5w5" secondAttribute="bottom" constant="50" id="wQA-iG-lbT"/>
+                            <constraint firstItem="M7V-Qp-bOv" firstAttribute="leading" secondItem="xNO-oj-nv4" secondAttribute="leading" constant="20" id="zZv-RC-JYD"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Artist" id="Kip-n1-RjG"/>
+                    <connections>
+                        <outlet property="canvas" destination="MiG-SO-5w5" id="SZt-rF-twm"/>
+                        <outletCollection property="buttonsOnScreen" destination="M7V-Qp-bOv" id="pJh-qe-POH"/>
+                        <outletCollection property="buttonsOnScreen" destination="8e1-1f-DZl" id="82L-31-c6a"/>
+                        <outletCollection property="buttonsOnScreen" destination="Mh7-qf-0RB" id="nd7-jy-uMa"/>
+                        <outletCollection property="buttonsOnScreen" destination="cHS-ZR-0yY" id="tS8-TX-MW3"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TmC-ve-SqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="550.72463768115949" y="-608.03571428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Nxg-85-FGe">
+            <objects>
+                <navigationController storyboardIdentifier="Navigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fqY-zc-Mft" customClass="NavigationController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="kKq-la-qcZ"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wgs-nT-2xY">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3LZ-QE-i3F" kind="relationship" relationship="rootViewController" id="g3m-XN-6dy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Wz-hu-Ca8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-359.4202898550725" y="-608.03571428571422"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="LightGreenSea">
+            <color red="0.12941176470588237" green="0.69019607843137254" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

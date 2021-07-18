@@ -6,7 +6,8 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "NavigationController.h"
+#import "ArtistViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +20,11 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = UIColor.blackColor;
     
-    self.window.rootViewController = [[ViewController alloc] init];
+    NSBundle *bundle = [NSBundle mainBundle];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: bundle];
+    
+    UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"Artist"];
+    self.window.rootViewController = [[NavigationController alloc] initWithRootViewController:viewController];
     self.window.rootViewController.view.backgroundColor = UIColor.whiteColor;
     
     [self.window makeKeyAndVisible];
