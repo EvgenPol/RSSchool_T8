@@ -31,7 +31,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7V-Qp-bOv" customClass="MyButton">
-                                <rect key="frame" x="20" y="478" width="163" height="34"/>
+                                <rect key="frame" x="20" y="478" width="163" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="163" id="93q-ME-0Bg"/>
                                 </constraints>
@@ -42,7 +42,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHS-ZR-0yY" customClass="MyButton">
-                                <rect key="frame" x="278" y="532" width="95" height="34"/>
+                                <rect key="frame" x="278" y="531" width="95" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="95" id="Kvk-KH-KRT"/>
                                 </constraints>
@@ -52,7 +52,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-qf-0RB" customClass="MyButton">
-                                <rect key="frame" x="20" y="532" width="151" height="34"/>
+                                <rect key="frame" x="20" y="531" width="151" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="151" id="uTW-qh-3wX"/>
                                 </constraints>
@@ -62,7 +62,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e1-1f-DZl" customClass="MyButton">
-                                <rect key="frame" x="282" y="478" width="91" height="34"/>
+                                <rect key="frame" x="282" y="478" width="91" height="33"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="4R5-UU-ers"/>
                                 </constraints>
@@ -70,6 +70,9 @@
                                 <state key="normal" title="Draw">
                                     <color key="titleColor" name="LightGreenSea"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchDrawResetButtom:" destination="3LZ-QE-i3F" eventType="touchUpInside" id="Osv-u4-wzl"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xNO-oj-nv4"/>
@@ -90,6 +93,8 @@
                     <navigationItem key="navigationItem" title="Artist" id="Kip-n1-RjG"/>
                     <connections>
                         <outlet property="canvas" destination="MiG-SO-5w5" id="SZt-rF-twm"/>
+                        <outlet property="openPaletteButton" destination="M7V-Qp-bOv" id="CtO-9I-kiO"/>
+                        <outlet property="openTimerButton" destination="Mh7-qf-0RB" id="lsL-m5-OgX"/>
                         <outletCollection property="buttonsOnScreen" destination="M7V-Qp-bOv" id="pJh-qe-POH"/>
                         <outletCollection property="buttonsOnScreen" destination="8e1-1f-DZl" id="82L-31-c6a"/>
                         <outletCollection property="buttonsOnScreen" destination="Mh7-qf-0RB" id="nd7-jy-uMa"/>

@@ -6,8 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PaletteView.h"
+#import "RSSchool_T8-Swift.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol TimerDelegate;
 
 @interface ArtistViewController : UIViewController
 

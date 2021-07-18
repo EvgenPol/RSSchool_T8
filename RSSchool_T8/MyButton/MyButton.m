@@ -26,6 +26,9 @@
     if ([self.titleLabel.text isEqualToString:@"Open Palette"]) {
         [self becomeFirstResponder];
     }
+    if ([self.titleLabel.text isEqualToString:@"Open Timer"]) {
+        [self becomeFirstResponder];
+    }
     [UIView performWithoutAnimation:^{
         [self setHighlighted:NO];
         [self layoutIfNeeded];
@@ -49,11 +52,7 @@
     layer.shadowRadius = 2.0;
 }
 
--(void)touchSave {
-    [self.inputView performSelector:@selector(saveSettings)];
-    [UIView animateWithDuration:0.8 animations:^{
-        [self resignFirstResponder];
-    }];
-}
+
+
 
 @end

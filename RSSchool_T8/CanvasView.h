@@ -20,10 +20,15 @@ typedef enum {
 NS_ASSUME_NONNULL_BEGIN
 
 @interface CanvasView : UIView
-
+@property (strong, nonatomic) NSArray *colors;
+@property (nonatomic) float time;
 @property (nonatomic, readwrite) DrawingObject drawingObject;
--(void)setupCanvas;
 
+@property (strong, nonatomic) NSArray *arrayShapeLayer;
+
+
+-(void)setupCanvas;
+-(void)drawObjectWithTime:(float) time;
 @end
 
 NS_ASSUME_NONNULL_END

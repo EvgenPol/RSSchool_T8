@@ -1,5 +1,5 @@
 //
-//  Palette.h
+//  PaletteView.h
 //  RSSchool_T8
 //
 //  Created by Евгений Полюбин on 16.07.2021.
@@ -11,13 +11,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Palette : UIInputView
+@protocol PaletteViewDelegate <NSObject>
+-(void)saveTouchPalette;
+@end
 
-@property (strong, nonatomic) MyButton *saveButton;
+@interface PaletteView : UIInputView
+
+@property(nullable, nonatomic, weak) id<PaletteViewDelegate> delegate;
 @property (strong, nonatomic) NSArray *colorButtons;
 @property (strong, nonatomic) NSMutableArray *selectedCollors;
-
--(void)setupPalette;
 
 @end
 

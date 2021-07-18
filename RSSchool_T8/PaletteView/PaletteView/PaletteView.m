@@ -5,10 +5,9 @@
 //  Created by Евгений Полюбин on 16.07.2021.
 //
 
-#import "Palette.h"
+#import "PaletteView.h"
 
-@interface Palette ()
-
+@interface PaletteView ()
 
 @property (strong, nonatomic) NSMutableArray *selectedButtons;
 @property (strong, nonatomic) NSArray *colors;
@@ -16,14 +15,14 @@
 @property (weak, nonatomic) NSTimer *timer;
 
 -(void)setupLayers;
--(void)saveSettings;
+-(void)saveSettings:(MyButton*)sender;
 -(void)setupStackViews;
 
 @end
 
 
 
-@implementation Palette
+@implementation PaletteView
 
 @synthesize timer;
 @synthesize layerPaletteView;
@@ -31,13 +30,12 @@
 @synthesize selectedCollors;
 @synthesize selectedButtons;
 @synthesize colorButtons;
-@synthesize saveButton;
 
--(void)setupPalette{
+
+-(void)setupPalette {
     [self setupLayers];
     [self setupSaveButton];
     [self setupStackViews];
-    [self setNeedsDisplay];
 }
 
 -(void)setupLayers {
@@ -62,9 +60,13 @@
     [saveButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 21, 0, 21)];
     [saveButton setTitle:@"Save" forState:UIControlStateNormal];
     
+    [saveButton addTarget: self
+                   action: @selector(saveSettings:)
+         forControlEvents: UIControlEventTouchUpInside];
+    
     [MyButton addShadowButton:saveButton.layer];
     [self addSubview:saveButton];
-    self.saveButton = saveButton;
+    
     
     saveButton.translatesAutoresizingMaskIntoConstraints = false;
     [saveButton.topAnchor constraintEqualToAnchor:self.topAnchor constant:20].active = YES;
@@ -88,10 +90,8 @@
   
     NSMutableArray *buttons = [NSMutableArray new];
     for (int i = 0; i < 12; i++) {
-        ButtonPalette *but = [[ButtonPalette alloc] init];
-        [but setupButtomPalleteWithColor:colors[i]];
+        ButtonPalette *but = [[ButtonPalette alloc] initWithIdentifier:i];
         [but addTarget:self action:@selector(choseColor:) forControlEvents:UIControlEventTouchUpInside];
-        [MyButton addShadowButton:but.layer];
         [buttons addObject:but];
         
         (i < 6) ? [firstRow addArrangedSubview:but] : [secondRow addArrangedSubview:but];
@@ -140,39 +140,28 @@
     }
 }
 
--(void)s{
-    [self setBackgroundColor:UIColor.whiteColor];
-}
-
--(instancetype)initWithFrame:(CGRect)frame {
+-(instancetype)init {
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGRect frame = CGRectMake(0, 0, screenSize.height/2, screenSize.width);
+    
     self = [super initWithFrame:frame];
     if (self) {
+        [self setupPalette];
         self.selectedButtons = [NSMutableArray new];
         self.selectedCollors = [NSMutableArray new];
-        self.colors = @[
-            [UIColor colorNamed:@"Color-1"],
-            [UIColor colorNamed:@"Color-2"],
-            [UIColor colorNamed:@"Color-3"],
-            [UIColor colorNamed:@"Color-4"],
-            [UIColor colorNamed:@"Color-5"],
-            [UIColor colorNamed:@"Color-6"],
-            [UIColor colorNamed:@"Color-7"],
-            [UIColor colorNamed:@"Color-8"],
-            [UIColor colorNamed:@"Color-9"],
-            [UIColor colorNamed:@"Color-10"],
-            [UIColor colorNamed:@"Color-11"],
-            [UIColor colorNamed:@"Color-12"]];
     }
     return self;
 }
 
--(void)saveSettings {
+-(void)saveSettings:(MyButton*)sender {
     [self.selectedCollors removeAllObjects];
     
     for (ButtonPalette* but in selectedButtons) {
         [selectedCollors addObject:but.color];
     }
+    
+    [self.delegate saveTouchPalette];
 }
-
+    
 
 @end

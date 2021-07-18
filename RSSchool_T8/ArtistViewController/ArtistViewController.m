@@ -8,29 +8,51 @@
 #import "ArtistViewController.h"
 #import "CanvasView.h"
 #import "NavigationController.h"
-#import "Palette.h"
+#import "PaletteView.h"
+#import "RSSchool_T8-Bridging-Header.h"
+
+
 @interface ArtistViewController ()
 
 @property (weak, nonatomic) IBOutlet CanvasView *canvas;
 @property (strong, nonatomic) IBOutletCollection(MyButton) NSArray *buttonsOnScreen;
+@property (weak, nonatomic) IBOutlet MyButton *openPaletteButton;
+@property (weak, nonatomic) IBOutlet MyButton *openTimerButton;
+
+@property (weak, nonatomic) PaletteView *paletteView;
+@property (weak, nonatomic) TimerView *timerView;
+
+@property (strong, nonatomic) NSArray *selectedColors;
+@property (nonatomic) float selectedTime;
+@property (nonatomic) DrawingObject selectedDrawingObject;
+
+
 
 @end
 
 
+
 @implementation ArtistViewController
+@synthesize selectedColors;
+@synthesize selectedTime;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Artist";
+    self.selectedColors = @[];
+    self.selectedTime = 1.00;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Drawings"
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(push)];
-    
+
     [self.canvas setupCanvas];
     [self firstSetupButtons];
     [self setupStateIdle];
     [self madeByEvgenyPoliubin];
+    [self setSelectedDrawingObject:DrawingObjectTree];
+    
+
     
 }
 
@@ -39,19 +61,20 @@
         button.titleEdgeInsets = UIEdgeInsetsMake(5, 21, 5, 0);
         [button setupMyButton];
         if ([button.titleLabel.text isEqual:@"Open Palette"]) {
-            CGSize screenSize = [UIScreen mainScreen].bounds.size;
-            CGRect framePallete = CGRectMake(0, 0, screenSize.height/2, screenSize.width);
-            Palette *palleteView = [[Palette alloc] initWithFrame: framePallete];
-            [palleteView setupPalette];
-            [palleteView.saveButton addTarget:button action:@selector(touchSave) forControlEvents:UIControlEventTouchUpInside];
-            
+            PaletteView *palleteView = [[PaletteView alloc] init];
+            palleteView.delegate = (id)self;
             button.inputView = palleteView;
+            self.paletteView = palleteView;
         }
         if ([button.titleLabel.text isEqual:@"Open Timer"]) {
-            
+            TimerView *timerView = [[TimerView alloc] init];
+            timerView.delegate = (id)self;
+            button.inputView = timerView;
+            self.timerView  = timerView;
         }
     }
 }
+
 
 -(void)setupStateIdle {
     self.canvas.drawingObject = DrawingObjectNone;
@@ -87,6 +110,24 @@
     string = nil;
 }
 
+- (IBAction)touchDrawResetButtom:(MyButton *)sender {
+    if ([sender.titleLabel.text isEqualToString:@"Draw"]) {
+        [self.canvas setDrawingObject:self.selectedDrawingObject];
+        [self.canvas drawObjectWithTime: self.selectedTime];
+        
+        [sender setTitle:@"Reset" forState:UIControlStateNormal];
+        [self setupStateDone];
+        
+    } else {
+        [sender setTitle:@"Draw" forState:UIControlStateNormal];
+        for (CAShapeLayer *layer in self.canvas.arrayShapeLayer) {
+            layer.strokeEnd = 0;
+        }
+        [self setupStateIdle];
+        [self.canvas setNeedsDisplay];
+    }
+}
+
 -(void)push {
     
 }
@@ -102,5 +143,36 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+@end
+
+
+
+
+@interface ArtistViewController (PaletteViewDelegate_TimerViewDelegate) <PaletteViewDelegate, TimerViewDelegate>
+
+-(void)saveTouchPalette;
+-(void)saveTouchTime;
+    
+@end
+
+
+
+@implementation ArtistViewController (PaletteViewDelegate_TimerViewDelegate)
+
+- (void)saveTouchPalette {
+    self.selectedColors = [NSArray arrayWithArray:self.paletteView.selectedCollors];
+    [UIView animateWithDuration:0.8 animations:^{
+        [self.openPaletteButton resignFirstResponder];
+    }];
+}
+
+
+- (void)saveTouchTime {
+    self.selectedTime = self.timerView.selectedValue;
+    [UIView animateWithDuration:0.8 animations:^{
+        [self.openTimerButton resignFirstResponder];
+    }];
+}
 
 @end

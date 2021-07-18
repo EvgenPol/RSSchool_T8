@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIBezierPath (DrawingStuff)
 
 +(UIBezierPath*)drawingTree;
++(UIBezierPath*)treeLeaves;
++(UIBezierPath*)treeTrunk;
++(UIBezierPath*)treeGround;
 
 @end
 

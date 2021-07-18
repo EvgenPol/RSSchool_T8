@@ -12,10 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ButtonPalette : UIButton
 
 @property (nonatomic) BOOL isChosed;
-@property (weak, nonatomic) UIColor *color;
+@property (strong, nonatomic) UIColor *color;
 
 -(void)touchButtonPalette;
--(void)setupButtomPalleteWithColor:(UIColor*)color;
+- (instancetype)initWithIdentifier:(NSInteger)i;
 
 @end
 

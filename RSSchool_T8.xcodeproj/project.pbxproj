@@ -19,10 +19,12 @@
 		6C2C9F8926A0D978007B6BCF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C9F8726A0D978007B6BCF /* Montserrat-Regular.ttf */; };
 		6CB788BF26A1B97100179DB6 /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB788BE26A1B97100179DB6 /* CanvasView.m */; };
 		6CB788EA26A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */; };
-		6CB7890D26A1F85500179DB6 /* Palette.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7890C26A1F85500179DB6 /* Palette.m */; };
+		6CB7890D26A1F85500179DB6 /* PaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7890C26A1F85500179DB6 /* PaletteView.m */; };
 		6CB7891226A3088C00179DB6 /* MyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7891126A3088C00179DB6 /* MyButton.m */; };
 		6CB7891726A3335100179DB6 /* ButtonPalette.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7891626A3335100179DB6 /* ButtonPalette.m */; };
-		6CD354F626A4100100F78A8C /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD354F526A4100100F78A8C /* Timer.swift */; };
+		6CD354F626A4100100F78A8C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD354F526A4100100F78A8C /* TimerView.swift */; };
+		6CD354FD26A467B500F78A8C /* MySlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD354FC26A467B500F78A8C /* MySlider.swift */; };
+		6CD354FF26A4693F00F78A8C /* LabelTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD354FE26A4693F00F78A8C /* LabelTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,13 +48,16 @@
 		6CB788BE26A1B97100179DB6 /* CanvasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		6CB788E826A1CAA400179DB6 /* UIBezierPath+DrawingStuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+DrawingStuff.h"; sourceTree = "<group>"; };
 		6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+DrawingStuff.m"; sourceTree = "<group>"; };
-		6CB7890B26A1F85500179DB6 /* Palette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Palette.h; sourceTree = "<group>"; };
-		6CB7890C26A1F85500179DB6 /* Palette.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Palette.m; sourceTree = "<group>"; };
+		6CB7890B26A1F85500179DB6 /* PaletteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PaletteView.h; sourceTree = "<group>"; };
+		6CB7890C26A1F85500179DB6 /* PaletteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PaletteView.m; sourceTree = "<group>"; };
 		6CB7891026A3088C00179DB6 /* MyButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyButton.h; sourceTree = "<group>"; };
 		6CB7891126A3088C00179DB6 /* MyButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyButton.m; sourceTree = "<group>"; };
 		6CB7891526A3335100179DB6 /* ButtonPalette.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ButtonPalette.h; sourceTree = "<group>"; };
 		6CB7891626A3335100179DB6 /* ButtonPalette.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ButtonPalette.m; sourceTree = "<group>"; };
-		6CD354F526A4100100F78A8C /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		6CD354F526A4100100F78A8C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		6CD354FC26A467B500F78A8C /* MySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySlider.swift; sourceTree = "<group>"; };
+		6CD354FE26A4693F00F78A8C /* LabelTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
+		6CD3550126A4A59200F78A8C /* 1233213123.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1233213123.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,16 +93,17 @@
 				6C2C9F5726A0A945007B6BCF /* Other */,
 				6C2C9F5B26A0B2F2007B6BCF /* NavigationController.h */,
 				6C2C9F5C26A0B2F2007B6BCF /* NavigationController.m */,
-				6CB7891326A3089700179DB6 /* MyButton */,
-				6CB788FF26A1EC4E00179DB6 /* Palette */,
 				6CB7891426A32C6800179DB6 /* ArtistViewController */,
-				6CD354F726A4100800F78A8C /* Timer */,
+				6CB788FF26A1EC4E00179DB6 /* PaletteView */,
+				6CD354F726A4100800F78A8C /* TimerView */,
+				6CB7891326A3089700179DB6 /* MyButton */,
 				6C2C9F5926A0B168007B6BCF /* DrawingVC.swift */,
 				6C2C9F4726A0A314007B6BCF /* Main.storyboard */,
 				6CB788BD26A1B97100179DB6 /* CanvasView.h */,
 				6CB788BE26A1B97100179DB6 /* CanvasView.m */,
 				6CB788E826A1CAA400179DB6 /* UIBezierPath+DrawingStuff.h */,
 				6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */,
+				6CD3550126A4A59200F78A8C /* 1233213123.swift */,
 				6C2C9F4F26A0A31A007B6BCF /* Info.plist */,
 				6C2C9F5826A0B167007B6BCF /* RSSchool_T8-Bridging-Header.h */,
 			);
@@ -126,13 +132,13 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		6CB788FF26A1EC4E00179DB6 /* Palette */ = {
+		6CB788FF26A1EC4E00179DB6 /* PaletteView */ = {
 			isa = PBXGroup;
 			children = (
 				6CD354F826A4102600F78A8C /* PaletteView */,
 				6CD354F926A4103100F78A8C /* ButtonPalette */,
 			);
-			path = Palette;
+			path = PaletteView;
 			sourceTree = "<group>";
 		};
 		6CB7891326A3089700179DB6 /* MyButton */ = {
@@ -153,19 +159,21 @@
 			path = ArtistViewController;
 			sourceTree = "<group>";
 		};
-		6CD354F726A4100800F78A8C /* Timer */ = {
+		6CD354F726A4100800F78A8C /* TimerView */ = {
 			isa = PBXGroup;
 			children = (
-				6CD354F526A4100100F78A8C /* Timer.swift */,
+				6CD354F526A4100100F78A8C /* TimerView.swift */,
+				6CD354FC26A467B500F78A8C /* MySlider.swift */,
+				6CD354FE26A4693F00F78A8C /* LabelTimerView.swift */,
 			);
-			path = Timer;
+			path = TimerView;
 			sourceTree = "<group>";
 		};
 		6CD354F826A4102600F78A8C /* PaletteView */ = {
 			isa = PBXGroup;
 			children = (
-				6CB7890B26A1F85500179DB6 /* Palette.h */,
-				6CB7890C26A1F85500179DB6 /* Palette.m */,
+				6CB7890B26A1F85500179DB6 /* PaletteView.h */,
+				6CB7890C26A1F85500179DB6 /* PaletteView.m */,
 			);
 			path = PaletteView;
 			sourceTree = "<group>";
@@ -253,14 +261,16 @@
 			files = (
 				6C2C9F4026A0A314007B6BCF /* AppDelegate.m in Sources */,
 				6C2C9F5126A0A31A007B6BCF /* main.m in Sources */,
-				6CB7890D26A1F85500179DB6 /* Palette.m in Sources */,
+				6CB7890D26A1F85500179DB6 /* PaletteView.m in Sources */,
 				6CB788BF26A1B97100179DB6 /* CanvasView.m in Sources */,
 				6C2C9F5A26A0B168007B6BCF /* DrawingVC.swift in Sources */,
 				6C2C9F5D26A0B2F2007B6BCF /* NavigationController.m in Sources */,
+				6CD354FD26A467B500F78A8C /* MySlider.swift in Sources */,
 				6C2C9F6026A0B634007B6BCF /* ArtistViewController.m in Sources */,
+				6CD354FF26A4693F00F78A8C /* LabelTimerView.swift in Sources */,
 				6CB7891726A3335100179DB6 /* ButtonPalette.m in Sources */,
 				6CB788EA26A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m in Sources */,
-				6CD354F626A4100100F78A8C /* Timer.swift in Sources */,
+				6CD354F626A4100100F78A8C /* TimerView.swift in Sources */,
 				6CB7891226A3088C00179DB6 /* MyButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +333,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -343,7 +354,9 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = RSSchool_T8;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/RSSchool_T8-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -382,6 +395,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -395,7 +409,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_MODULE_NAME = RSSchool_T8;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/RSSchool_T8-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

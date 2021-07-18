@@ -6,7 +6,7 @@
 //
 
 #import "NavigationController.h"
-#import "Palette.h"
+#import "PaletteView.h"
 
 @interface NavigationController ()
 
