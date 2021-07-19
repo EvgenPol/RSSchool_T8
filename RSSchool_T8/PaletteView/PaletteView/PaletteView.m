@@ -10,7 +10,6 @@
 @interface PaletteView ()
 
 @property (strong, nonatomic) NSMutableArray *selectedButtons;
-@property (strong, nonatomic) NSArray *colors;
 @property (weak, nonatomic) CALayer *layerPaletteView;
 @property (weak, nonatomic) NSTimer *timer;
 
@@ -26,10 +25,9 @@
 
 @synthesize timer;
 @synthesize layerPaletteView;
-@synthesize colors;
 @synthesize selectedCollors;
 @synthesize selectedButtons;
-@synthesize colorButtons;
+
 
 
 -(void)setupPalette {
@@ -88,15 +86,15 @@
     UIStackView *firstRow = [self returnStackView];
     UIStackView *secondRow = [self returnStackView];
   
-    NSMutableArray *buttons = [NSMutableArray new];
+
     for (int i = 0; i < 12; i++) {
         ButtonPalette *but = [[ButtonPalette alloc] initWithIdentifier:i];
         [but addTarget:self action:@selector(choseColor:) forControlEvents:UIControlEventTouchUpInside];
-        [buttons addObject:but];
+        
         
         (i < 6) ? [firstRow addArrangedSubview:but] : [secondRow addArrangedSubview:but];
     }
-    self.colorButtons = [NSArray arrayWithArray:buttons];
+    
     
     [self addSubview:firstRow];
     [self addSubview:secondRow];
@@ -154,12 +152,12 @@
 }
 
 -(void)saveSettings:(MyButton*)sender {
-    [self.selectedCollors removeAllObjects];
+    NSMutableArray<UIColor*> *newColors = [NSMutableArray new];
     
     for (ButtonPalette* but in selectedButtons) {
-        [selectedCollors addObject:but.color];
+        [newColors addObject:but.color];
     }
-    
+    self.selectedCollors = newColors;
     [self.delegate saveTouchPalette];
 }
     

@@ -12,6 +12,7 @@ import UIKit
 }
 
 class TimerView: UIInputView {
+    
     private weak var curentValueLabel: UILabel?
     private weak var layerTimerView: CALayer?
     @objc public weak var delegate: TimerViewDelegate?
@@ -21,7 +22,6 @@ class TimerView: UIInputView {
         self.setupLayers()
         self.setupSlider()
         self.setupSaveButton()
-        
     }
     
      init() {
@@ -130,7 +130,4 @@ extension TimerView: MySliderDelegate{
         self.curentValueLabel?.text = String(format: "%.2f s", value)
         self.selectedValue = value
     }
-    
-   
-    
 }

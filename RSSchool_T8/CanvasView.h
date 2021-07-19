@@ -6,13 +6,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSSchool_T8-Swift.h"
 
-typedef enum {
-    DrawingObjectTree,
-    DrawingObjectHead,
-    DrawingObjectLandscape,
-    DrawingObjectPlanet,
-} DrawingObject;
+//typedef enum {
+//    DrawingObjectTree,
+//    DrawingObjectHead,
+//    DrawingObjectLandscape,
+//    DrawingObjectPlanet,
+//} DrawingObject;
 
 
 

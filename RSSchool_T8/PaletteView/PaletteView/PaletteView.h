@@ -18,8 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PaletteView : UIInputView
 
 @property(nullable, nonatomic, weak) id<PaletteViewDelegate> delegate;
-@property (strong, nonatomic) NSArray *colorButtons;
-@property (strong, nonatomic) NSMutableArray *selectedCollors;
+@property (strong, nonatomic) NSArray<UIColor*> *selectedCollors;
 
 @end
 

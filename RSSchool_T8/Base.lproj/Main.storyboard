@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -14,6 +15,72 @@
         </array>
     </customFonts>
     <scenes>
+        <!--DrawingVC-->
+        <scene sceneID="p2F-7b-adh">
+            <objects>
+                <viewController storyboardIdentifier="DrawingVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rk4-0o-Lhr" customClass="DrawingVC" customModule="RSSchool_T8" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GwC-up-3zV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8I-CO-SoD" customClass="MyButton">
+                                <rect key="frame" x="107" y="94" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="EeD-bb-mDa"/>
+                                    <constraint firstAttribute="height" constant="40" id="LP3-Vu-5ao"/>
+                                </constraints>
+                                <state key="normal" title="Planet"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x4V-jQ-mf9" customClass="MyButton">
+                                <rect key="frame" x="107" y="204" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="gdt-LQ-5Vc"/>
+                                    <constraint firstAttribute="height" constant="40" id="lvK-f3-4fX"/>
+                                </constraints>
+                                <state key="normal" title="Tree"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XtN-gV-WP6" customClass="MyButton">
+                                <rect key="frame" x="107" y="259" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="Uc4-1U-Xwy"/>
+                                    <constraint firstAttribute="height" constant="40" id="y1w-xo-A5o"/>
+                                </constraints>
+                                <state key="normal" title="Landscape"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tl0-99-OwY" customClass="MyButton">
+                                <rect key="frame" x="107" y="149" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="SHT-yj-H9D"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="hsY-Pd-bVG"/>
+                                </constraints>
+                                <state key="normal" title="Head"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kWA-5h-GJn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XtN-gV-WP6" firstAttribute="top" secondItem="x4V-jQ-mf9" secondAttribute="bottom" constant="15" id="Fgp-Pp-ECD"/>
+                            <constraint firstItem="tl0-99-OwY" firstAttribute="centerX" secondItem="GwC-up-3zV" secondAttribute="centerX" id="FpV-Kr-dua"/>
+                            <constraint firstItem="x4V-jQ-mf9" firstAttribute="top" secondItem="tl0-99-OwY" secondAttribute="bottom" constant="15" id="N5g-Gi-Oep"/>
+                            <constraint firstItem="X8I-CO-SoD" firstAttribute="centerX" secondItem="GwC-up-3zV" secondAttribute="centerX" id="bV8-GH-LH8"/>
+                            <constraint firstItem="x4V-jQ-mf9" firstAttribute="centerX" secondItem="GwC-up-3zV" secondAttribute="centerX" id="bWj-zm-jOu"/>
+                            <constraint firstItem="XtN-gV-WP6" firstAttribute="centerX" secondItem="GwC-up-3zV" secondAttribute="centerX" id="jxB-td-Dr5"/>
+                            <constraint firstItem="tl0-99-OwY" firstAttribute="top" secondItem="X8I-CO-SoD" secondAttribute="bottom" constant="15" id="kMY-if-esm"/>
+                            <constraint firstItem="X8I-CO-SoD" firstAttribute="top" secondItem="kWA-5h-GJn" secondAttribute="top" constant="50" id="rVP-Zg-xhm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="tfo-js-Ymd"/>
+                    <connections>
+                        <outletCollection property="buttonsOnScreen" destination="X8I-CO-SoD" collectionClass="NSMutableArray" id="WAf-aV-zWJ"/>
+                        <outletCollection property="buttonsOnScreen" destination="tl0-99-OwY" collectionClass="NSMutableArray" id="chP-ho-tsZ"/>
+                        <outletCollection property="buttonsOnScreen" destination="x4V-jQ-mf9" collectionClass="NSMutableArray" id="Jzb-Hs-D1a"/>
+                        <outletCollection property="buttonsOnScreen" destination="XtN-gV-WP6" collectionClass="NSMutableArray" id="bjS-kJ-sCv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Dm-0T-pDd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="551" y="-939"/>
+        </scene>
         <!--Artist-->
         <scene sceneID="wys-ip-RHm">
             <objects>
@@ -103,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TmC-ve-SqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="550.72463768115949" y="-608.03571428571422"/>
+            <point key="canvasLocation" x="551" y="-271"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nxg-85-FGe">
@@ -114,6 +181,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wgs-nT-2xY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -129,5 +199,8 @@
         <namedColor name="LightGreenSea">
             <color red="0.12941176470588237" green="0.69019607843137254" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

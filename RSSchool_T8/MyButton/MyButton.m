@@ -9,6 +9,15 @@
 
 @implementation MyButton
 
+-(void)setupEnabled {
+    self.alpha = 1;
+    [self setUserInteractionEnabled:YES];
+}
+
+-(void)setupDisenabled {
+    self.alpha = 0.5;
+    [self setUserInteractionEnabled:NO];
+}
 
 -(BOOL)canBecomeFirstResponder {
     return YES;

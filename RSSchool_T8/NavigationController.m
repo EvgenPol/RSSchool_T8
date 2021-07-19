@@ -11,25 +11,14 @@
 
 @interface NavigationController ()
 
-@property (strong, nonatomic) DrawingVC *drawingVC;
-
 @end
 
 @implementation NavigationController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem.backBarButtonItem setTintColor:[UIColor colorNamed:@"LightGreenSea"]];
-    [self setDrawingVC:[[DrawingVC alloc] init]];
-    [self addChildViewController:self.drawingVC];
-    [self.drawingVC setView:[[UIView alloc] init]];
-    [self.drawingVC.view setFrame:[UIScreen mainScreen].bounds];
-    [self.drawingVC.view setBackgroundColor:UIColor.blueColor];
-    [self.drawingVC willMoveToParentViewController:self];
-}
-
--(void)pushTextNav{
-    NSLog(@"Work!");
-}
+    [self.navigationBar setTintColor:[UIColor colorNamed:@"LightGreenSea"]];
+   
+   }
 
 @end

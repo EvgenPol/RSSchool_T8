@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) UIView *inputView;
 
+-(void)setupEnabled;
+-(void)setupDisenabled;
 -(void)setupMyButton;
 +(void)addShadowButton:(CALayer*)layer;
 

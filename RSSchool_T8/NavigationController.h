@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RSSchool_T8-Swift.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NavigationController : UINavigationController
+
+@property (strong, nonatomic) DrawingVC *drawingVC;
 
 @end
 

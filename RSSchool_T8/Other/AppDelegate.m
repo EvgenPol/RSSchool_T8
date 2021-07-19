@@ -24,9 +24,18 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: bundle];
     
     UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"Artist"];
-    self.window.rootViewController = [[NavigationController alloc] initWithRootViewController:viewController];
+    NavigationController *navigation = [[NavigationController alloc] initWithRootViewController:viewController];
+    
+    
+    self.window.rootViewController = navigation;
     self.window.rootViewController.view.backgroundColor = UIColor.whiteColor;
     
+   
+    [navigation setDrawingVC:[storyboard instantiateViewControllerWithIdentifier:@"DrawingVC"]];
+    [navigation addChildViewController:navigation.drawingVC];
+    [navigation.drawingVC didMoveToParentViewController:navigation];
+    
+    [navigation popToRootViewControllerAnimated:NO];
     [self.window makeKeyAndVisible];
     return YES;
 }
