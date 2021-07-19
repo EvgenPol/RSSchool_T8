@@ -117,6 +117,9 @@
                                 <state key="normal" title="Share">
                                     <color key="titleColor" name="LightGreenSea"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchShareButton:" destination="3LZ-QE-i3F" eventType="touchUpInside" id="j14-t5-xWH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-qf-0RB" customClass="MyButton">
                                 <rect key="frame" x="20" y="531" width="151" height="33"/>

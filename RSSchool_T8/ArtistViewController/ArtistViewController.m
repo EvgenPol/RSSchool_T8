@@ -125,6 +125,20 @@
     [self.navigationController pushViewController:navigation.drawingVC animated:YES];
 }
 
+- (IBAction)touchShareButton:(MyButton *)sender {
+    NSArray<UIImage*>* image = @[[self.canvas getImage]];
+    UIActivityViewController *activityVC = [UIActivityViewController alloc];
+    activityVC = [activityVC initWithActivityItems:image applicationActivities:nil];
+    
+    activityVC.popoverPresentationController.sourceView = self.view; // so that iPads won't crash
+          
+          // exclude some activity types from the list (optional)
+//    activityVC.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
+          
+          // present the view controller
+    [self presentViewController:activityVC animated:YES completion:nil];
+}
+
 @end
 
 

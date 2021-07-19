@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)setupCanvas;
 -(void)drawWithTime:(float)time Object:(DrawingObject)object AndColors:(NSArray<UIColor*>*)colors;
+-(UIImage*)getImage;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -150,6 +150,41 @@
     }
 }
 
+-(UIImage*)getImage {
+//    UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(200, 200)];
+//    NSData *png = [renderer PNGDataWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+//        [[UIColor blackColor] setStroke];
+//        [rendererContext strokeRect:renderer.format.bounds];
+//        [[UIColor clearColor] setFill];
+//        [rendererContext fillRect:self.bounds];
+//    }];
+//
+//    NSData *jpeg = [renderer JPEGDataWithCompressionQuality:1 actions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
+//        [[UIColor blackColor] setStroke];
+//        [rendererContext strokeRect:renderer.format.bounds];
+//        [[UIColor clearColor] setFill];
+//        [rendererContext fillRect:self.bounds];
+//    }];
+    
+    UIGraphicsBeginImageContextWithOptions(self.frame.size, true, 0);
+    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+            
+//    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+    
+          // set up activity view controller
+          
+   
+}
+   
+    
+    
+
+
+
+
 
 @end
 
