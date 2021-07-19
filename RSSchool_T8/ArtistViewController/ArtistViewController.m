@@ -10,6 +10,7 @@
 #import "NavigationController.h"
 #import "PaletteView.h"
 #import "RSSchool_T8-Bridging-Header.h"
+#import <LinkPresentation/LPLinkMetadata.h>
 
 
 
@@ -19,6 +20,8 @@
 @property (strong, nonatomic) IBOutletCollection(MyButton) NSArray *buttonsOnScreen;
 @property (weak, nonatomic) IBOutlet MyButton *openPaletteButton;
 @property (weak, nonatomic) IBOutlet MyButton *openTimerButton;
+
+
 
 @property (weak, nonatomic) PaletteView *paletteView;
 @property (weak, nonatomic) TimerView *timerView;
@@ -126,16 +129,14 @@
 }
 
 - (IBAction)touchShareButton:(MyButton *)sender {
-    NSArray<UIImage*>* image = @[[self.canvas getImage]];
+    UIImage* image = [self.canvas getImage];
     UIActivityViewController *activityVC = [UIActivityViewController alloc];
-    activityVC = [activityVC initWithActivityItems:image applicationActivities:nil];
     
-    activityVC.popoverPresentationController.sourceView = self.view; // so that iPads won't crash
-          
-          // exclude some activity types from the list (optional)
-//    activityVC.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToFacebook ]
-          
-          // present the view controller
+    
+    activityVC = [activityVC initWithActivityItems:@[image, self] applicationActivities:nil];
+    
+    activityVC.popoverPresentationController.sourceView = self.view;
+        
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
@@ -171,6 +172,33 @@
 
 - (void)sendDone {
     [self setupStateDone];
+}
+
+@end
+
+
+
+@interface ArtistViewController (UIActivityItemSource) <UIActivityItemSource>
+
+@end
+
+@implementation ArtistViewController (UIActivityItemSource)
+
+- (nullable id)activityViewController:(nonnull UIActivityViewController *)activityViewController itemForActivityType:(nullable UIActivityType)activityType {
+    return nil;
+}
+
+- (nonnull id)activityViewControllerPlaceholderItem:(nonnull UIActivityViewController *)activityViewController {
+    return @"";
+}
+
+- (LPLinkMetadata*)activityViewControllerLinkMetadata:(UIActivityViewController *)activityViewController  API_AVAILABLE(ios(13.0)){
+    UIImage *image = [UIImage imageNamed:@"IconForActivityVC"];
+  
+    NSItemProvider *imageProvider = [[NSItemProvider alloc] initWithObject:image];
+    LPLinkMetadata *metadata = [[LPLinkMetadata alloc] init];
+    metadata.imageProvider = imageProvider;
+    return metadata;
 }
 
 @end

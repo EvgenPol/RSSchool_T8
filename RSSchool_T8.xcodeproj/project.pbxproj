@@ -98,8 +98,7 @@
 				6CB7891326A3089700179DB6 /* MyButton */,
 				6C2C9F5926A0B168007B6BCF /* DrawingVC.swift */,
 				6C2C9F4726A0A314007B6BCF /* Main.storyboard */,
-				6CB788BD26A1B97100179DB6 /* CanvasView.h */,
-				6CB788BE26A1B97100179DB6 /* CanvasView.m */,
+				6CD3552D26A5E2FA00F78A8C /* CanvasView */,
 				6CD3550726A599D400F78A8C /* UIBezierPath_DrawingStuff */,
 				6C2C9F4F26A0A31A007B6BCF /* Info.plist */,
 			);
@@ -191,6 +190,15 @@
 				6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */,
 			);
 			path = UIBezierPath_DrawingStuff;
+			sourceTree = "<group>";
+		};
+		6CD3552D26A5E2FA00F78A8C /* CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				6CB788BD26A1B97100179DB6 /* CanvasView.h */,
+				6CB788BE26A1B97100179DB6 /* CanvasView.m */,
+			);
+			path = CanvasView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

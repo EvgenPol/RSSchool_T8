@@ -27,6 +27,12 @@
     self.layer.shadowRadius = 8.0;
     self.layer.shadowOpacity = 1.0;
     
+    CGSize size = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+    
+    //subview for uncut photo
+    UIView *subView = [[UIView alloc] initWithFrame:CGRectMake(6, 6, size.width - 12, size.height - 12)];
+    [subView setBackgroundColor:UIColor.whiteColor];
+    
     NSArray *arrayShapeLayer = @[
         [CAShapeLayer layer],
         [CAShapeLayer layer],
@@ -43,9 +49,9 @@
         layer.lineCap = kCALineCapRound;
         layer.lineJoin = kCALineJoinRound;
         
-        [self.layer addSublayer:layer];
+        [subView.layer addSublayer:layer];
     }
-   
+    [self addSubview:subView];
     self.arrayShapeLayer = arrayShapeLayer;
 }
 
@@ -135,6 +141,7 @@
     [self.timer setTolerance:0.01];
 }
 
+
 -(void)oneStepDrawing{
     CAShapeLayer *layerForCheck = self.arrayShapeLayer[0];
     if (layerForCheck.strokeEnd > 1){
@@ -151,40 +158,13 @@
 }
 
 -(UIImage*)getImage {
-//    UIGraphicsImageRenderer *renderer = [[UIGraphicsImageRenderer alloc] initWithSize:CGSizeMake(200, 200)];
-//    NSData *png = [renderer PNGDataWithActions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-//        [[UIColor blackColor] setStroke];
-//        [rendererContext strokeRect:renderer.format.bounds];
-//        [[UIColor clearColor] setFill];
-//        [rendererContext fillRect:self.bounds];
-//    }];
-//
-//    NSData *jpeg = [renderer JPEGDataWithCompressionQuality:1 actions:^(UIGraphicsImageRendererContext * _Nonnull rendererContext) {
-//        [[UIColor blackColor] setStroke];
-//        [rendererContext strokeRect:renderer.format.bounds];
-//        [[UIColor clearColor] setFill];
-//        [rendererContext fillRect:self.bounds];
-//    }];
-    
-    UIGraphicsBeginImageContextWithOptions(self.frame.size, true, 0);
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIGraphicsBeginImageContextWithOptions(self.subviews[0].bounds.size, true, 0);
+    [self.layer.sublayers[0] renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
     return image;
-            
-//    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    
-          // set up activity view controller
-          
-   
 }
-   
-    
-    
-
-
-
-
 
 @end
 
