@@ -12,23 +12,30 @@ typedef enum {
     DrawingObjectHead,
     DrawingObjectLandscape,
     DrawingObjectPlanet,
-    DrawingObjectNone,
 } DrawingObject;
 
 
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CanvasViewDelegate <NSObject>
+
+-(void)sendDone;
+
+@end
+
+
+
 @interface CanvasView : UIView
-@property (strong, nonatomic) NSArray *colors;
+
 @property (nonatomic) float time;
 @property (nonatomic, readwrite) DrawingObject drawingObject;
-
-@property (strong, nonatomic) NSArray *arrayShapeLayer;
+@property (strong, nonatomic) NSArray<CAShapeLayer*> *arrayShapeLayer;
+@property (weak, nonatomic, nullable) id<CanvasViewDelegate> delegate;
 
 
 -(void)setupCanvas;
--(void)drawObjectWithTime:(float) time;
+-(void)drawWithTime:(float)time Object:(DrawingObject)object AndColors:(NSArray<UIColor*>*)colors;
 @end
 
 NS_ASSUME_NONNULL_END

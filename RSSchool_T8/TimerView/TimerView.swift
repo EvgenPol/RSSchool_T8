@@ -71,7 +71,7 @@ extension TimerView {
         slider.delegate = self
         minValueLabel.text = "1"
         maxValueLabel.text = "5"
-        curentValueLabel.text = "1.00"
+        curentValueLabel.text = "1.00 s"
        
         self.addSubview(slider)
         self.addSubview(minValueLabel)
@@ -127,7 +127,7 @@ extension TimerView {
 
 extension TimerView: MySliderDelegate{
     func currentValueSlider(value: Float) {
-        self.curentValueLabel?.text = String(format: "%.2f", value)
+        self.curentValueLabel?.text = String(format: "%.2f s", value)
         self.selectedValue = value
     }
     

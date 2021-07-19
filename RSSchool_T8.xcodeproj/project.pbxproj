@@ -57,7 +57,6 @@
 		6CD354F526A4100100F78A8C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		6CD354FC26A467B500F78A8C /* MySlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySlider.swift; sourceTree = "<group>"; };
 		6CD354FE26A4693F00F78A8C /* LabelTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelTimerView.swift; sourceTree = "<group>"; };
-		6CD3550126A4A59200F78A8C /* 1233213123.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 1233213123.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +100,8 @@
 				6C2C9F4726A0A314007B6BCF /* Main.storyboard */,
 				6CB788BD26A1B97100179DB6 /* CanvasView.h */,
 				6CB788BE26A1B97100179DB6 /* CanvasView.m */,
-				6CB788E826A1CAA400179DB6 /* UIBezierPath+DrawingStuff.h */,
-				6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */,
-				6CD3550126A4A59200F78A8C /* 1233213123.swift */,
+				6CD3550726A599D400F78A8C /* UIBezierPath_DrawingStuff */,
 				6C2C9F4F26A0A31A007B6BCF /* Info.plist */,
-				6C2C9F5826A0B167007B6BCF /* RSSchool_T8-Bridging-Header.h */,
 			);
 			path = RSSchool_T8;
 			sourceTree = "<group>";
@@ -114,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				6C2C9F8A26A0D9C2007B6BCF /* Fonts */,
+				6C2C9F5826A0B167007B6BCF /* RSSchool_T8-Bridging-Header.h */,
 				6C2C9F4A26A0A31A007B6BCF /* Assets.xcassets */,
 				6C2C9F3E26A0A314007B6BCF /* AppDelegate.h */,
 				6C2C9F3F26A0A314007B6BCF /* AppDelegate.m */,
@@ -185,6 +182,15 @@
 				6CB7891626A3335100179DB6 /* ButtonPalette.m */,
 			);
 			path = ButtonPalette;
+			sourceTree = "<group>";
+		};
+		6CD3550726A599D400F78A8C /* UIBezierPath_DrawingStuff */ = {
+			isa = PBXGroup;
+			children = (
+				6CB788E826A1CAA400179DB6 /* UIBezierPath+DrawingStuff.h */,
+				6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */,
+			);
+			path = UIBezierPath_DrawingStuff;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,7 +438,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PoliubinEE.RSSchool-T8";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/RSSchool_T8-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/Other/RSSchool_T8-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -455,7 +461,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "PoliubinEE.RSSchool-T8";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/RSSchool_T8-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "RSSchool_T8/Other/RSSchool_T8-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

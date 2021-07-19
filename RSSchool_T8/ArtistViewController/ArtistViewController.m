@@ -22,7 +22,7 @@
 @property (weak, nonatomic) PaletteView *paletteView;
 @property (weak, nonatomic) TimerView *timerView;
 
-@property (strong, nonatomic) NSArray *selectedColors;
+@property (strong, nonatomic) NSArray<UIColor*> *selectedColors;
 @property (nonatomic) float selectedTime;
 @property (nonatomic) DrawingObject selectedDrawingObject;
 
@@ -44,8 +44,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Drawings"
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
+                
                                                                              action:@selector(push)];
-
+    self.canvas.delegate = (id)self;
     [self.canvas setupCanvas];
     [self firstSetupButtons];
     [self setupStateIdle];
@@ -53,7 +54,6 @@
     [self setSelectedDrawingObject:DrawingObjectTree];
     
 
-    
 }
 
 -(void)firstSetupButtons {
@@ -77,7 +77,7 @@
 
 
 -(void)setupStateIdle {
-    self.canvas.drawingObject = DrawingObjectNone;
+    self.selectedDrawingObject = DrawingObjectTree;
     [self.canvas setNeedsLayout];
     for (UIButton *button in self.buttonsOnScreen) {
         if ([button.titleLabel.text isEqual:@"Share"]) {
@@ -112,16 +112,19 @@
 
 - (IBAction)touchDrawResetButtom:(MyButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"Draw"]) {
-        [self.canvas setDrawingObject:self.selectedDrawingObject];
-        [self.canvas drawObjectWithTime: self.selectedTime];
+        float time = self.selectedTime;
+        DrawingObject object = self.selectedDrawingObject;
+        NSArray<UIColor*> *colors = self.selectedColors;
         
+        [self.canvas drawWithTime:time Object:object AndColors:colors];
+    
         [sender setTitle:@"Reset" forState:UIControlStateNormal];
-        [self setupStateDone];
-        
+        [self setupStateDraw];
     } else {
         [sender setTitle:@"Draw" forState:UIControlStateNormal];
         for (CAShapeLayer *layer in self.canvas.arrayShapeLayer) {
             layer.strokeEnd = 0;
+            layer.strokeColor = UIColor.clearColor.CGColor;
         }
         [self setupStateIdle];
         [self.canvas setNeedsDisplay];
@@ -129,7 +132,7 @@
 }
 
 -(void)push {
-    
+//    [self.navigationController pushViewController:self.childViewControllers[0] animated:YES];
 }
 
 
@@ -149,16 +152,17 @@
 
 
 
-@interface ArtistViewController (PaletteViewDelegate_TimerViewDelegate) <PaletteViewDelegate, TimerViewDelegate>
+@interface ArtistViewController (MyViewDelegate) <PaletteViewDelegate, TimerViewDelegate, CanvasViewDelegate>
 
 -(void)saveTouchPalette;
 -(void)saveTouchTime;
+-(void)sendDone;
     
 @end
 
 
 
-@implementation ArtistViewController (PaletteViewDelegate_TimerViewDelegate)
+@implementation ArtistViewController (MyViewDelegate)
 
 - (void)saveTouchPalette {
     self.selectedColors = [NSArray arrayWithArray:self.paletteView.selectedCollors];
@@ -173,6 +177,10 @@
     [UIView animateWithDuration:0.8 animations:^{
         [self.openTimerButton resignFirstResponder];
     }];
+}
+
+- (void)sendDone {
+    [self setupStateDone];
 }
 
 @end

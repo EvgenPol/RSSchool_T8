@@ -8,10 +8,12 @@
 #import "CanvasView.h"
 #import "UIBezierPath+DrawingStuff.h"
 
+
 @interface CanvasView ()
 
 @property (nonatomic) float currentStep;
-@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic, nullable) NSTimer *timer;
+
 
 @end
 
@@ -38,39 +40,107 @@
         [layer setStrokeColor:UIColor.blackColor.CGColor];
         [layer setLineWidth:1.0];
         [layer setFrame:self.bounds];
+        layer.lineCap = kCALineCapRound;
+        layer.lineJoin = kCALineJoinRound;
         
         [self.layer addSublayer:layer];
     }
    
-    [arrayShapeLayer[0] setPath:[UIBezierPath treeLeaves].CGPath];
-    [arrayShapeLayer[1] setPath:[UIBezierPath treeTrunk].CGPath];
-    [arrayShapeLayer[2] setPath:[UIBezierPath treeGround].CGPath];
-    [arrayShapeLayer[2] setLineWidth:0.5];
-    
     self.arrayShapeLayer = arrayShapeLayer;
 }
 
--(void)drawObjectWithTime:(float) time {
-    self.currentStep = 1.0f / (60.0f * time);
+-(void)setPathsForShapeLayers:(DrawingObject)object {
+    CAShapeLayer *layer0;
+    CAShapeLayer *layer1;
+    CAShapeLayer *layer2;
     
-    NSLog(@"and current step %f, and time %f", self.currentStep , time);
-    
-//    self.currentStep = 0.1;
-    
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1/30
-                                                  target:self
-                                                selector:@selector(circleAnima)
-                                                userInfo:self
-                                                 repeats:YES];
-    [self.timer setTolerance:0.02];
+    switch (object) {
+        case DrawingObjectTree:
+            layer0 = self.arrayShapeLayer[0];
+            layer1 = self.arrayShapeLayer[1];
+            layer2 = self.arrayShapeLayer[2];
+            layer0.path = [UIBezierPath treeLeaves].CGPath;
+            layer1.path = [UIBezierPath treeTrunk].CGPath;
+            layer2.path = [UIBezierPath treeGround].CGPath;
+            layer2.lineWidth = 0.5;
+            break;
+            
+        case DrawingObjectHead:
+            layer0 = self.arrayShapeLayer[0];
+            layer1 = self.arrayShapeLayer[1];
+            layer2 = self.arrayShapeLayer[2];
+            layer0.path = [UIBezierPath headFace].CGPath;
+            layer1.path = [UIBezierPath headLips].CGPath;
+            layer2.path = [UIBezierPath headNeck].CGPath;
+            layer2.lineWidth = 1;
+            break;
+            
+        case DrawingObjectLandscape:
+            layer0 = self.arrayShapeLayer[0];
+            layer1 = self.arrayShapeLayer[1];
+            layer2 = self.arrayShapeLayer[2];
+            layer0.path = [UIBezierPath landscapeSky].CGPath;
+            layer1.path = [UIBezierPath landscapeHill].CGPath;
+            layer2.path = [UIBezierPath landscapeMountain].CGPath;
+            layer2.lineWidth = 0.5;
+            break;
+            
+        case DrawingObjectPlanet:
+            layer0 = self.arrayShapeLayer[0];
+            layer1 = self.arrayShapeLayer[1];
+            layer2 = self.arrayShapeLayer[2];
+            layer0.path = [UIBezierPath planetAsteroids].CGPath;
+            layer1.path = [UIBezierPath planetSurface].CGPath;
+            layer2.path = [UIBezierPath planetAndRing].CGPath;
+            layer2.lineWidth = 1;
+            break;
+    }
 }
 
--(void)circleAnima{
+-(void)setColorsForShapeLayers:(NSArray<UIColor*>*)colors {
+    NSMutableArray<UIColor*> *innerArray = [colors mutableCopy];
+    NSMutableArray<UIColor*> *shuffledArray = [[NSMutableArray alloc] init];
+    int indexLayer = 0;
+    
+    while (innerArray.count < 3) {
+        [innerArray addObject:UIColor.blackColor];
+    }
 
-//    NSLog(@"%f", self.shapeLayer.strokeEnd);
+    for (int i = 0; i < 3; i++) {
+        uint32_t removedIndex = arc4random_uniform((uint32_t)innerArray.count);
+        UIColor *removedColor = [innerArray objectAtIndex:removedIndex];
+        [shuffledArray addObject:removedColor];
+        [innerArray removeObjectAtIndex:removedIndex];
+    }
+    
+
+    for (UIColor *color in shuffledArray) {
+        CAShapeLayer *layer = self.arrayShapeLayer[indexLayer];
+        layer.strokeColor = color.CGColor;
+        indexLayer ++;
+    }
+}
+
+-(void)drawWithTime:(float)time Object:(DrawingObject)object AndColors:(NSArray<UIColor*>*)colors {
+    [self setPathsForShapeLayers:object];
+    [self setColorsForShapeLayers:colors];
+    
+    self.currentStep = 1.0f / (60.0f * time);
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval: 0.0167
+                                                  target:self
+                                                selector:@selector(oneStepDrawing)
+                                                userInfo:nil
+                                                 repeats:YES];
+    [self.timer setTolerance:0.01];
+}
+
+-(void)oneStepDrawing{
     CAShapeLayer *layerForCheck = self.arrayShapeLayer[0];
     if (layerForCheck.strokeEnd > 1){
         [self.timer invalidate];
+        [self setTimer:nil];
+        [self.delegate sendDone];
         return;
     }
     if (layerForCheck.strokeEnd < 1)  {
@@ -78,22 +148,6 @@
             layer.strokeEnd += self.currentStep;
         }
     }
-//    if (self.shapeLayer.strokeEnd == 0) {
-//        self.shapeLayer.strokeStart = 0;
-//    }
-//
-//    if (self.shapeLayer.strokeStart == self.shapeLayer.strokeEnd) {
-//        self.shapeLayer.strokeEnd = 0;
-//    }
-//    if (self.shapeLayer.strokeEnd > 1 && self.shapeLayer.strokeStart > 1) {
-//
-//        self.shapeLayer.strokeStart = self.shapeLayer.strokeEnd;
-//
-//    }
-    
-    
-    
-   
 }
 
 
