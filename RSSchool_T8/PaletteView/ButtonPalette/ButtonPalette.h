@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) BOOL isChosed;
 @property (strong, nonatomic) UIColor *color;
 
--(void)touchButtonPalette;
+- (void)touchButtonPalette;
 - (instancetype)initWithIdentifier:(NSInteger)i;
 
 @end

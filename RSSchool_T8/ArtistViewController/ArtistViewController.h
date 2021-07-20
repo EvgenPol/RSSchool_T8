@@ -13,8 +13,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol TimerDelegate;
-
 @interface ArtistViewController : UIViewController
 
 @end

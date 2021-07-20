@@ -27,7 +27,6 @@ class DrawingVC: UIViewController {
         
         self.navigationItem.title = "Drawing"
         
-        
         for button in buttonsOnScreen {
             button.setupMyButton()
             MyButton.addShadowButton(button.layer)
@@ -37,7 +36,7 @@ class DrawingVC: UIViewController {
                              for: .touchUpInside)
             
             if button.titleLabel?.text == "Head" {
-                button.layer.shadowRadius = 2
+                button.layer.shadowRadius = 3
                 button.layer.shadowColor = UIColor.init(named: "LightGreenSea")?.cgColor
             }
         }
@@ -54,10 +53,9 @@ class DrawingVC: UIViewController {
         
         for button in buttonsOnScreen {
             if !(button == sender) {
-                button.layer.shadowRadius = 1
+                button.layer.shadowRadius = 2
                 button.layer.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             }
         }
     }
-    
 }

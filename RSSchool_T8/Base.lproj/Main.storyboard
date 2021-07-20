@@ -141,7 +141,7 @@
                                     <color key="titleColor" name="LightGreenSea"/>
                                 </state>
                                 <connections>
-                                    <action selector="touchDrawResetButtom:" destination="3LZ-QE-i3F" eventType="touchUpInside" id="Osv-u4-wzl"/>
+                                    <action selector="touchDrawResetButton:" destination="3LZ-QE-i3F" eventType="touchUpInside" id="Osv-u4-wzl"/>
                                 </connections>
                             </button>
                         </subviews>

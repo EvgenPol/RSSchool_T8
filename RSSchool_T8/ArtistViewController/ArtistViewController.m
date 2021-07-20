@@ -13,6 +13,11 @@
 #import <LinkPresentation/LPLinkMetadata.h>
 
 
+typedef enum {
+    StateButtonIdle,
+    StateButtonDraw,
+    StateButtonDone,
+} StateButton;
 
 @interface ArtistViewController ()
 
@@ -21,10 +26,15 @@
 @property (weak, nonatomic) IBOutlet MyButton *openPaletteButton;
 @property (weak, nonatomic) IBOutlet MyButton *openTimerButton;
 
-
-
 @property (weak, nonatomic) PaletteView *paletteView;
 @property (weak, nonatomic) TimerView *timerView;
+
+- (void)viewDidLoad;
+- (void)firstSetupButtons;
+- (void)changeStateButton:(StateButton)state;
+
+- (IBAction)touchDrawResetButton:(MyButton *)sender;
+- (IBAction)touchShareButton:(MyButton *)sender;
 
 @end
 
@@ -34,50 +44,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Artist";
+    
     self.canvas.delegate = (id)self;
     [self.canvas setupCanvas];
     [self firstSetupButtons];
-    [self setupStateIdle];
+    [self changeStateButton:StateButtonIdle];
     [self madeByEvgenyPoliubin];
     
-    
-    UIBarButtonItem *buttonItem = [UIBarButtonItem alloc];
-    UIBarButtonItem *backButton = [UIBarButtonItem alloc];
-    buttonItem = [buttonItem initWithTitle:@"Drawings"
-                        style:UIBarButtonItemStyleDone
-                       target:self
-                       action:@selector(push)
-     ];
-    backButton = [backButton initWithTitle:@"Artist"
-                        style:UIBarButtonItemStylePlain
-                       target:self
-                       action:@selector(push)
-     ];
-                                
-    NSDictionary *attributes = [(NavigationController*)self.navigationController textAttributes_Font];
-    
-    
-    
-    [buttonItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [buttonItem setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
-    [backButton setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
-    self.navigationItem.rightBarButtonItem = buttonItem;
-    self.navigationItem.backBarButtonItem = backButton;
+    //customization tab bar
+    [(NavigationController *)self.navigationController setupNavigationBarForArtist];
 }
 
--(void)firstSetupButtons {
+- (void)firstSetupButtons {
     for (MyButton *button in self.buttonsOnScreen) {
         button.titleEdgeInsets = UIEdgeInsetsMake(5, 21, 5, 0);
         [button setupMyButton];
-        if ([button.titleLabel.text isEqual:@"Open Palette"]) {
+        
+        if (button == self.openPaletteButton) {
             PaletteView *palleteView = [[PaletteView alloc] init];
             palleteView.delegate = (id)self;
             button.inputView = palleteView;
             self.paletteView = palleteView;
         }
-        if ([button.titleLabel.text isEqual:@"Open Timer"]) {
+        if (button == self.openTimerButton) {
             TimerView *timerView = [[TimerView alloc] init];
             timerView.delegate = (id)self;
             button.inputView = timerView;
@@ -86,32 +75,34 @@
     }
 }
 
-
--(void)setupStateIdle {
-    [self.canvas setNeedsLayout];
-    for (MyButton *button in self.buttonsOnScreen) {
-        if ([button.titleLabel.text isEqual:@"Share"]) {
-            [button setupDisenabled];
-        } else {
-            [button setupEnabled];
-        }
-    }
-}
-
--(void)setupStateDraw {
-    for (MyButton *button in self.buttonsOnScreen) {
-            [button setupDisenabled];
-    }
-}
-
--(void)setupStateDone {
-    for (MyButton *button in self.buttonsOnScreen) {
-        if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Draw"]) {
-                   [button setupEnabled];
-        }
-        if ([button.titleLabel.text isEqual:@"Draw"]) {
-                   [button setTitle:@"Reset" forState:UIControlStateNormal];
-        }
+- (void)changeStateButton:(StateButton)state {
+    switch (state) {
+        case StateButtonIdle:
+            for (MyButton *button in self.buttonsOnScreen) {
+                if ([button.titleLabel.text isEqual:@"Share"]) {
+                    [button setupDisenabled];
+                } else {
+                    [button setupEnabled];
+                }
+            }
+            break;
+            
+        case StateButtonDraw:
+            for (MyButton *button in self.buttonsOnScreen) {
+                    [button setupDisenabled];
+            }
+            break;
+            
+        case StateButtonDone:
+            for (MyButton *button in self.buttonsOnScreen) {
+                if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Draw"]) {
+                           [button setupEnabled];
+                }
+                if ([button.titleLabel.text isEqual:@"Draw"]) {
+                           [button setTitle:@"Reset" forState:UIControlStateNormal];
+                }
+            }
+            break;
     }
 }
 
@@ -120,7 +111,7 @@
     string = nil;
 }
 
-- (IBAction)touchDrawResetButtom:(MyButton *)sender {
+- (IBAction)touchDrawResetButton:(MyButton *)sender {
     if ([sender.titleLabel.text isEqualToString:@"Draw"]) {
         NavigationController *navigator = (NavigationController*)self.navigationController;
         float time = self.timerView.selectedValue;
@@ -128,21 +119,15 @@
         NSArray<UIColor*> *colors = self.paletteView.selectedCollors;
         
         [self.canvas drawWithTime:time Object:object AndColors:colors];
-        [self setupStateDraw];
+        [self changeStateButton:StateButtonDraw];
     } else {
         [sender setTitle:@"Draw" forState:UIControlStateNormal];
         for (CAShapeLayer *layer in self.canvas.arrayShapeLayer) {
             layer.strokeEnd = 0;
             layer.strokeColor = UIColor.clearColor.CGColor;
         }
-        [self setupStateIdle];
-        [self.canvas setNeedsDisplay];
+        [self changeStateButton:StateButtonIdle];
     }
-}
-
--(void)push {
-    NavigationController *navigation = (NavigationController*)self.navigationController;
-    [self.navigationController pushViewController:navigation.drawingVC animated:YES];
 }
 
 - (IBAction)touchShareButton:(MyButton *)sender {
@@ -161,13 +146,13 @@
 
 
 
-
+//MARK: subscribe to my views delegate
 @interface ArtistViewController (MyViewDelegate) <PaletteViewDelegate, TimerViewDelegate, CanvasViewDelegate>
 
 -(void)saveTouchPalette;
 -(void)saveTouchTime;
 -(void)sendDone;
-    
+
 @end
 
 
@@ -175,32 +160,33 @@
 @implementation ArtistViewController (MyViewDelegate)
 
 - (void)saveTouchPalette {
-    [UIView animateWithDuration:0.8 animations:^{
+    [UIView animateWithDuration:0.9 animations:^{
         [self.openPaletteButton resignFirstResponder];
     }];
 }
 
-
 - (void)saveTouchTime {
-    [UIView animateWithDuration:0.8 animations:^{
+    [UIView animateWithDuration:0.9 animations:^{
         [self.openTimerButton resignFirstResponder];
     }];
 }
 
 - (void)sendDone {
-    [self setupStateDone];
+    [self changeStateButton:StateButtonDone];
 }
 
 @end
 
 
 
+//MARK: subscribe to datasource "UIActivityItemSource" for button share (add icon app)
 @interface ArtistViewController (UIActivityItemSource) <UIActivityItemSource>
 
 @end
 
 @implementation ArtistViewController (UIActivityItemSource)
 
+//activityViewController and activityViewControllerPlaceholderItem methods is required from protocol
 - (nullable id)activityViewController:(nonnull UIActivityViewController *)activityViewController itemForActivityType:(nullable UIActivityType)activityType {
     return nil;
 }
@@ -208,7 +194,9 @@
 - (nonnull id)activityViewControllerPlaceholderItem:(nonnull UIActivityViewController *)activityViewController {
     return @"";
 }
+//
 
+//necessary for us methods
 - (LPLinkMetadata*)activityViewControllerLinkMetadata:(UIActivityViewController *)activityViewController  API_AVAILABLE(ios(13.0)){
     UIImage *image = [UIImage imageNamed:@"IconForActivityVC"];
   

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) DrawingVC *drawingVC;
 @property (strong, nonatomic) NSDictionary *textAttributes_Font;
 
+-(void)setupNavigationBarForArtist;
+
 @end
 
 NS_ASSUME_NONNULL_END

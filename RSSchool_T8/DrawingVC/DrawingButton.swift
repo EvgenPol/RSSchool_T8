@@ -12,13 +12,13 @@ class DrawingButton: MyButton {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.isHighlighted = false
-        self.layer.shadowRadius = 3
+        self.layer.shadowRadius = 4
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         
-        self.layer.shadowRadius = 2
+        self.layer.shadowRadius = 3
         self.layer.shadowColor = UIColor.init(named: "LightGreenSea")?.cgColor
         
         UIView.performWithoutAnimation {

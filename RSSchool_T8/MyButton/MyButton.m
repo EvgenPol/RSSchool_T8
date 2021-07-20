@@ -26,7 +26,7 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
     [self setHighlighted:NO];
-    self.layer.shadowRadius = 2;
+    self.layer.shadowRadius = 3;
 }
 
 
@@ -64,7 +64,7 @@
     layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f].CGColor;
     layer.shadowOffset = CGSizeMake(0.0, 0.0);
     layer.shadowOpacity = 1.0;
-    layer.shadowRadius = 1.0;
+    layer.shadowRadius = 2.0;
 }
 
 @end

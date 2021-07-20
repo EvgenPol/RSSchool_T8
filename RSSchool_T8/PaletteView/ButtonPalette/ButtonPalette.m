@@ -11,6 +11,7 @@
 @interface ButtonPalette ()
 
 @property (class, readonly) NSArray *colorsArray;
+- (void)setupButtomPalleteWithColor:(UIColor*)color;
 
 @end
 
@@ -18,6 +19,7 @@
 @synthesize color;
 @synthesize isChosed;
 
+//All color for palette button
 +(NSArray*)colorsArray {
     return @[
         [UIColor colorNamed:@"Color-1"],
@@ -35,22 +37,22 @@
     ];
 }
 
--(void)touchButtonPalette {
-    if (self.isChosed) {
+- (void)touchButtonPalette {
+    if (isChosed) {
         CALayer *colorLayer = self.layer.sublayers.firstObject;
         [colorLayer setFrame:CGRectMake(8, 8, 24, 24)];
         [colorLayer setCornerRadius:6];
-        self.isChosed = NO;
+        isChosed = NO;
     } else {
         CALayer *colorLayer = self.layer.sublayers.firstObject;
         [colorLayer setFrame:CGRectMake(2, 2, 36, 36)];
         [colorLayer setCornerRadius:8];
-        self.isChosed = YES;
+        isChosed = YES;
     }
 }
 
--(void)setupButtomPalleteWithColor:(UIColor*)color {
-    self.isChosed = NO;
+- (void)setupButtomPalleteWithColor:(UIColor*)color {
+    isChosed = NO;
     CALayer *colorLayer = [[CALayer alloc] init];
     
     [colorLayer setFrame:CGRectMake(8, 8, 24, 24)];

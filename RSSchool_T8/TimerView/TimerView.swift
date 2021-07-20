@@ -12,9 +12,9 @@ import UIKit
 }
 
 class TimerView: UIInputView {
-    
     private weak var curentValueLabel: UILabel?
     private weak var layerTimerView: CALayer?
+    
     @objc public weak var delegate: TimerViewDelegate?
     @objc public var selectedValue: Float = 1.00
     
@@ -37,8 +37,8 @@ class TimerView: UIInputView {
 }
 
 
+//MARK: setting up the TimerView view
 extension TimerView {
-    
     private func setupLayers() {
         let basicLayer = CALayer.init()
         let frame = self.layer.frame
@@ -59,7 +59,7 @@ extension TimerView {
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 1.0;
-        layer.shadowRadius = 4.0;
+        layer.shadowRadius = 8.0;
     }
     
     private func setupSlider() {
@@ -69,45 +69,17 @@ extension TimerView {
         let maxValueLabel = LabelTimerView.label()
         
         slider.delegate = self
-        
         minValueLabel.text = "1"
         maxValueLabel.text = "5"
         curentValueLabel.text = "1.00 s"
-        
-        minValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
-        maxValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
-        curentValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
-        
+       
         self.addSubview(slider)
         self.addSubview(minValueLabel)
         self.addSubview(maxValueLabel)
         self.addSubview(curentValueLabel)
         self.curentValueLabel = curentValueLabel
         
-        slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.topAnchor.constraint(equalTo: self.topAnchor, constant: 92).isActive = true
-        slider.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        slider.widthAnchor.constraint(equalToConstant: 255).isActive = true
-        slider.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        
-        minValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        minValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 103).isActive = true
-        minValueLabel.widthAnchor.constraint(equalToConstant: 7).isActive = true
-        minValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        minValueLabel.rightAnchor.constraint(equalTo: slider.leftAnchor, constant: -25).isActive = true
-        
-        maxValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        maxValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 103).isActive = true
-        maxValueLabel.widthAnchor.constraint(equalToConstant: 11).isActive = true
-        maxValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        maxValueLabel.leftAnchor.constraint(equalTo: slider.rightAnchor, constant: 25).isActive = true
-        
-        curentValueLabel.translatesAutoresizingMaskIntoConstraints = false
-        curentValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 161).isActive = true
-        curentValueLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        curentValueLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
-        curentValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
-        
+        self.addConstrains(slider, minValueLabel, maxValueLabel, curentValueLabel)
     }
     
     private func setupSaveButton() {
@@ -127,12 +99,49 @@ extension TimerView {
         saveButton.rightAnchor.constraint(equalTo:self.rightAnchor, constant:-40).isActive = true;
         saveButton.widthAnchor.constraint(equalToConstant: 85).isActive = true;
     }
-    
 }
 
+
+
+//MARK: subscribe TimerView to MySliderDelegate
 extension TimerView: MySliderDelegate{
     func currentValueSlider(value: Float) {
         self.curentValueLabel?.text = String(format: "%.2f s", value)
         self.selectedValue = value
+    }
+}
+
+
+
+//MARK: Add constrains for slider
+extension TimerView {
+    private func addConstrains(_ slider: MySlider,
+                               _ minValueLabel: LabelTimerView,
+                               _ maxValueLabel: LabelTimerView,
+                               _ currentValueLabel: LabelTimerView) {
+        
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.topAnchor.constraint(equalTo: self.topAnchor, constant: 92).isActive = true
+        slider.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        slider.widthAnchor.constraint(equalToConstant: 255).isActive = true
+        slider.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        
+        minValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        minValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 103).isActive = true
+        minValueLabel.widthAnchor.constraint(equalToConstant: 7).isActive = true
+        minValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        minValueLabel.rightAnchor.constraint(equalTo: slider.leftAnchor, constant: -25).isActive = true
+        
+        maxValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        maxValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 103).isActive = true
+        maxValueLabel.widthAnchor.constraint(equalToConstant: 11).isActive = true
+        maxValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        maxValueLabel.leftAnchor.constraint(equalTo: slider.rightAnchor, constant: 25).isActive = true
+        
+        currentValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        currentValueLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 161).isActive = true
+        currentValueLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        currentValueLabel.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        currentValueLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
     }
 }

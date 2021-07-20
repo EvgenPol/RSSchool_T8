@@ -13,30 +13,34 @@
 @property (weak, nonatomic) CALayer *layerPaletteView;
 @property (weak, nonatomic) NSTimer *timer;
 
--(void)setupLayers;
--(void)saveSettings:(MyButton*)sender;
--(void)setupStackViews;
+- (void)setupPalette;
+- (void)setupLayers;
+- (void)setupSaveButton;
+- (void)setupStackViews;
+- (void)addShadow:(CALayer*)layer;
+
+- (void)choseColor:(ButtonPalette*)sender;
+- (void)saveSettings:(MyButton*)sender;
+
+- (instancetype)init;
 
 @end
 
 
 
 @implementation PaletteView
-
 @synthesize timer;
 @synthesize layerPaletteView;
 @synthesize selectedCollors;
 @synthesize selectedButtons;
 
-
-
--(void)setupPalette {
+- (void)setupPalette {
     [self setupLayers];
     [self setupSaveButton];
     [self setupStackViews];
 }
 
--(void)setupLayers {
+- (void)setupLayers {
     CALayer *basicLayer = [[CALayer alloc] init];
     CGRect frame = self.layer.frame;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -52,7 +56,7 @@
     [self.layer addSublayer:basicLayer];
 }
 
--(void)setupSaveButton {
+- (void)setupSaveButton {
     MyButton *saveButton = [MyButton buttonWithType:UIButtonTypeRoundedRect];
     [saveButton setupMyButton];
     [saveButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 21, 0, 21)];
@@ -72,7 +76,7 @@
     [saveButton.widthAnchor constraintEqualToConstant:85].active = YES;
 }
 
--(UIStackView*)returnStackView {
+- (UIStackView*)returnStackView {
     UIStackView *stack = [[UIStackView alloc] init];
     stack.axis = UILayoutConstraintAxisHorizontal;
     stack.distribution = UIStackViewDistributionEqualSpacing;
@@ -82,7 +86,7 @@
     return stack;
 }
 
--(void)setupStackViews {
+- (void)setupStackViews {
     UIStackView *firstRow = [self returnStackView];
     UIStackView *secondRow = [self returnStackView];
   
@@ -105,14 +109,14 @@
     [secondRow.topAnchor constraintEqualToAnchor:firstRow.bottomAnchor constant:20].active = YES;
 }
 
--(void)addShadow:(CALayer*)layer {
+- (void)addShadow:(CALayer*)layer {
     layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f].CGColor;
     layer.shadowOffset = CGSizeMake(0.0, 0.0);
     layer.shadowOpacity = 1.0;
     layer.shadowRadius = 4.0;
 }
 
--(void)choseColor:(ButtonPalette*)sender {
+- (void)choseColor:(ButtonPalette*)sender {
     if ([selectedButtons containsObject:sender]) {
         [sender touchButtonPalette];
         [selectedButtons removeObject:sender];
@@ -138,7 +142,18 @@
     }
 }
 
--(instancetype)init {
+
+- (void)saveSettings:(MyButton*)sender {
+    NSMutableArray<UIColor*> *newColors = [NSMutableArray new];
+    
+    for (ButtonPalette* but in selectedButtons) {
+        [newColors addObject:but.color];
+    }
+    self.selectedCollors = newColors;
+    [self.delegate saveTouchPalette];
+}
+
+- (instancetype)init {
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGRect frame = CGRectMake(0, 0, screenSize.height/2, screenSize.width);
     
@@ -151,15 +166,6 @@
     return self;
 }
 
--(void)saveSettings:(MyButton*)sender {
-    NSMutableArray<UIColor*> *newColors = [NSMutableArray new];
-    
-    for (ButtonPalette* but in selectedButtons) {
-        [newColors addObject:but.color];
-    }
-    self.selectedCollors = newColors;
-    [self.delegate saveTouchPalette];
-}
     
 
 @end
