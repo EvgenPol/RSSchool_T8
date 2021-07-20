@@ -21,4 +21,10 @@
    
    }
 
+- (NSDictionary*)textAttributes_Font {
+    UIFont *font = [UIFont fontWithName:@"Montserrat-Regular" size:17.0];
+    return [NSDictionary dictionaryWithObjectsAndKeys: font, NSFontAttributeName, nil];
+}
+
+
 @end

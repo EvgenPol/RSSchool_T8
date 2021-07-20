@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NavigationController : UINavigationController
 
 @property (strong, nonatomic) DrawingVC *drawingVC;
+@property (strong, nonatomic) NSDictionary *textAttributes_Font;
 
 @end
 

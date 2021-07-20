@@ -35,20 +35,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"Artist";
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Drawings"
-                                                                              style:UIBarButtonItemStyleDone
-                                                                             target:self
-                                                                             action:@selector(push)];
-    
     self.canvas.delegate = (id)self;
     [self.canvas setupCanvas];
     [self firstSetupButtons];
     [self setupStateIdle];
     [self madeByEvgenyPoliubin];
     
-
     
+    UIBarButtonItem *buttonItem = [UIBarButtonItem alloc];
+    UIBarButtonItem *backButton = [UIBarButtonItem alloc];
+    buttonItem = [buttonItem initWithTitle:@"Drawings"
+                        style:UIBarButtonItemStyleDone
+                       target:self
+                       action:@selector(push)
+     ];
+    backButton = [backButton initWithTitle:@"Artist"
+                        style:UIBarButtonItemStylePlain
+                       target:self
+                       action:@selector(push)
+     ];
+                                
+    NSDictionary *attributes = [(NavigationController*)self.navigationController textAttributes_Font];
+    
+    [buttonItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [buttonItem setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
+    [backButton setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
+    self.navigationItem.rightBarButtonItem = buttonItem;
+    self.navigationItem.backBarButtonItem = backButton;
 }
 
 -(void)firstSetupButtons {
@@ -74,11 +88,12 @@
 -(void)setupStateIdle {
     [self.canvas setNeedsLayout];
     for (MyButton *button in self.buttonsOnScreen) {
-        if ([button.titleLabel.text isEqual:@"Share"]) {
-            [button setupDisenabled];
-        } else {
-            [button setupEnabled];
-        }
+        if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Draw"]) {
+                 [button setupEnabled];
+             }
+             if ([button.titleLabel.text isEqual:@"Draw"]) {
+                 [button setTitle:@"Reset" forState:UIControlStateNormal];
+             }
     }
 }
 
@@ -90,8 +105,11 @@
 
 -(void)setupStateDone {
     for (MyButton *button in self.buttonsOnScreen) {
-        if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Reset"]) {
-            [button setupEnabled];
+        if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Draw"]) {
+                   [button setupEnabled];
+        }
+        if ([button.titleLabel.text isEqual:@"Draw"]) {
+                   [button setTitle:@"Reset" forState:UIControlStateNormal];
         }
     }
 }
@@ -109,8 +127,6 @@
         NSArray<UIColor*> *colors = self.paletteView.selectedCollors;
         
         [self.canvas drawWithTime:time Object:object AndColors:colors];
-    
-        [sender setTitle:@"Reset" forState:UIControlStateNormal];
         [self setupStateDraw];
     } else {
         [sender setTitle:@"Draw" forState:UIControlStateNormal];
@@ -130,10 +146,10 @@
 
 - (IBAction)touchShareButton:(MyButton *)sender {
     UIImage* image = [self.canvas getImage];
+    NSData *imagePNG = UIImagePNGRepresentation(image);
+    
     UIActivityViewController *activityVC = [UIActivityViewController alloc];
-    
-    
-    activityVC = [activityVC initWithActivityItems:@[image, self] applicationActivities:nil];
+    activityVC = [activityVC initWithActivityItems:@[imagePNG, self] applicationActivities:nil];
     
     activityVC.popoverPresentationController.sourceView = self.view;
         
