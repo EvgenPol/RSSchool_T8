@@ -12,6 +12,7 @@
 -(void)setupEnabled {
     self.alpha = 1;
     [self setUserInteractionEnabled:YES];
+    self.layer.shadowRadius = 2.0;
 }
 
 -(void)setupDisenabled {
