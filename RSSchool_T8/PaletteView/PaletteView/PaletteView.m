@@ -109,7 +109,7 @@
     layer.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.25f].CGColor;
     layer.shadowOffset = CGSizeMake(0.0, 0.0);
     layer.shadowOpacity = 1.0;
-    layer.shadowRadius = 8.0;
+    layer.shadowRadius = 4.0;
 }
 
 -(void)choseColor:(ButtonPalette*)sender {

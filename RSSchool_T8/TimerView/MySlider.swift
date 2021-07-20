@@ -29,8 +29,6 @@ class MySlider: UISlider {
     slider.backgroundColor = UIColor.white
     slider.tintColor = UIColor.init(named: "LightGreenSea")
     
-    
     return slider
     }
 }
-

@@ -8,15 +8,6 @@
 #import <UIKit/UIKit.h>
 #import "RSSchool_T8-Swift.h"
 
-//typedef enum {
-//    DrawingObjectTree,
-//    DrawingObjectHead,
-//    DrawingObjectLandscape,
-//    DrawingObjectPlanet,
-//} DrawingObject;
-
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol CanvasViewDelegate <NSObject>

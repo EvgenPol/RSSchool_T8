@@ -17,6 +17,7 @@
 		6C2C9F6026A0B634007B6BCF /* ArtistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C2C9F5F26A0B634007B6BCF /* ArtistViewController.m */; };
 		6C2C9F8826A0D978007B6BCF /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C9F8626A0D978007B6BCF /* Montserrat-Medium.ttf */; };
 		6C2C9F8926A0D978007B6BCF /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C2C9F8726A0D978007B6BCF /* Montserrat-Regular.ttf */; };
+		6C88C14E26A6E3970005DB2B /* DrawingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88C14D26A6E3970005DB2B /* DrawingButton.swift */; };
 		6CB788BF26A1B97100179DB6 /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB788BE26A1B97100179DB6 /* CanvasView.m */; };
 		6CB788EA26A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB788E926A1CAA400179DB6 /* UIBezierPath+DrawingStuff.m */; };
 		6CB7890D26A1F85500179DB6 /* PaletteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CB7890C26A1F85500179DB6 /* PaletteView.m */; };
@@ -44,6 +45,7 @@
 		6C2C9F5F26A0B634007B6BCF /* ArtistViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistViewController.m; sourceTree = "<group>"; };
 		6C2C9F8626A0D978007B6BCF /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		6C2C9F8726A0D978007B6BCF /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		6C88C14D26A6E3970005DB2B /* DrawingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingButton.swift; sourceTree = "<group>"; };
 		6CB788BD26A1B97100179DB6 /* CanvasView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
 		6CB788BE26A1B97100179DB6 /* CanvasView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
 		6CB788E826A1CAA400179DB6 /* UIBezierPath+DrawingStuff.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+DrawingStuff.h"; sourceTree = "<group>"; };
@@ -90,16 +92,15 @@
 			isa = PBXGroup;
 			children = (
 				6C2C9F5726A0A945007B6BCF /* Other */,
-				6C2C9F5B26A0B2F2007B6BCF /* NavigationController.h */,
-				6C2C9F5C26A0B2F2007B6BCF /* NavigationController.m */,
+				6C88C14B26A6DF020005DB2B /* NavigationController */,
 				6CB7891426A32C6800179DB6 /* ArtistViewController */,
 				6CB788FF26A1EC4E00179DB6 /* PaletteView */,
 				6CD354F726A4100800F78A8C /* TimerView */,
 				6CB7891326A3089700179DB6 /* MyButton */,
-				6C2C9F5926A0B168007B6BCF /* DrawingVC.swift */,
-				6C2C9F4726A0A314007B6BCF /* Main.storyboard */,
+				6C88C14C26A6DF130005DB2B /* DrawingVC */,
 				6CD3552D26A5E2FA00F78A8C /* CanvasView */,
 				6CD3550726A599D400F78A8C /* UIBezierPath_DrawingStuff */,
+				6C2C9F4726A0A314007B6BCF /* Main.storyboard */,
 				6C2C9F4F26A0A31A007B6BCF /* Info.plist */,
 			);
 			path = RSSchool_T8;
@@ -108,12 +109,11 @@
 		6C2C9F5726A0A945007B6BCF /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				6C88C14A26A6DEE30005DB2B /* AppDelegate */,
 				6C2C9F8A26A0D9C2007B6BCF /* Fonts */,
-				6C2C9F5826A0B167007B6BCF /* RSSchool_T8-Bridging-Header.h */,
 				6C2C9F4A26A0A31A007B6BCF /* Assets.xcassets */,
-				6C2C9F3E26A0A314007B6BCF /* AppDelegate.h */,
-				6C2C9F3F26A0A314007B6BCF /* AppDelegate.m */,
 				6C2C9F4C26A0A31A007B6BCF /* LaunchScreen.storyboard */,
+				6C2C9F5826A0B167007B6BCF /* RSSchool_T8-Bridging-Header.h */,
 				6C2C9F5026A0A31A007B6BCF /* main.m */,
 			);
 			path = Other;
@@ -126,6 +126,33 @@
 				6C2C9F8726A0D978007B6BCF /* Montserrat-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		6C88C14A26A6DEE30005DB2B /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				6C2C9F3E26A0A314007B6BCF /* AppDelegate.h */,
+				6C2C9F3F26A0A314007B6BCF /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		6C88C14B26A6DF020005DB2B /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				6C2C9F5B26A0B2F2007B6BCF /* NavigationController.h */,
+				6C2C9F5C26A0B2F2007B6BCF /* NavigationController.m */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		6C88C14C26A6DF130005DB2B /* DrawingVC */ = {
+			isa = PBXGroup;
+			children = (
+				6C2C9F5926A0B168007B6BCF /* DrawingVC.swift */,
+				6C88C14D26A6E3970005DB2B /* DrawingButton.swift */,
+			);
+			path = DrawingVC;
 			sourceTree = "<group>";
 		};
 		6CB788FF26A1EC4E00179DB6 /* PaletteView */ = {
@@ -275,6 +302,7 @@
 			files = (
 				6C2C9F4026A0A314007B6BCF /* AppDelegate.m in Sources */,
 				6C2C9F5126A0A31A007B6BCF /* main.m in Sources */,
+				6C88C14E26A6E3970005DB2B /* DrawingButton.swift in Sources */,
 				6CB7890D26A1F85500179DB6 /* PaletteView.m in Sources */,
 				6CB788BF26A1B97100179DB6 /* CanvasView.m in Sources */,
 				6C2C9F5A26A0B168007B6BCF /* DrawingVC.swift in Sources */,

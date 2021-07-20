@@ -59,7 +59,7 @@ extension TimerView {
         layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowOpacity = 1.0;
-        layer.shadowRadius = 8.0;
+        layer.shadowRadius = 4.0;
     }
     
     private func setupSlider() {
@@ -69,10 +69,15 @@ extension TimerView {
         let maxValueLabel = LabelTimerView.label()
         
         slider.delegate = self
+        
         minValueLabel.text = "1"
         maxValueLabel.text = "5"
         curentValueLabel.text = "1.00 s"
-       
+        
+        minValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
+        maxValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
+        curentValueLabel.font = UIFont.init(name: "Montserrat-Regular", size: 18.0)
+        
         self.addSubview(slider)
         self.addSubview(minValueLabel)
         self.addSubview(maxValueLabel)

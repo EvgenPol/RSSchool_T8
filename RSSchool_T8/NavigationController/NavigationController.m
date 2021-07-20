@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationBar setTintColor:[UIColor colorNamed:@"LightGreenSea"]];
-   
+    [self.navigationBar setTitleTextAttributes:self.textAttributes_Font];
    }
 
 - (NSDictionary*)textAttributes_Font {

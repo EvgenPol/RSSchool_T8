@@ -17,9 +17,9 @@ import UIKit
 
 
 class DrawingVC: UIViewController {
-    @objc public var selectedObject: DrawingObject = .Tree
+    @objc public var selectedObject: DrawingObject = .Head
     
-    @IBOutlet var buttonsOnScreen: [MyButton]!
+    @IBOutlet var buttonsOnScreen: [DrawingButton]!
     
     
     override func viewDidLoad() {
@@ -36,15 +36,14 @@ class DrawingVC: UIViewController {
                              action: #selector(touchButton(sender:)),
                              for: .touchUpInside)
             
-            if button.titleLabel?.text == "Tree" {
-                button.layer.shadowRadius = 4
+            if button.titleLabel?.text == "Head" {
+                button.layer.shadowRadius = 2
                 button.layer.shadowColor = UIColor.init(named: "LightGreenSea")?.cgColor
             }
         }
-        
     }
     
-    @objc func touchButton(sender: MyButton) {
+    @objc func touchButton(sender: DrawingButton) {
         switch sender.titleLabel?.text {
         case "Planet": selectedObject = .Planet
         case "Head": selectedObject = .Head
@@ -54,11 +53,8 @@ class DrawingVC: UIViewController {
         }
         
         for button in buttonsOnScreen {
-            if (button == sender) {
-                button.layer.shadowRadius = 4
-                button.layer.shadowColor = UIColor.init(named: "LightGreenSea")?.cgColor
-            } else {
-                button.layer.shadowRadius = 2
+            if !(button == sender) {
+                button.layer.shadowRadius = 1
                 button.layer.shadowColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
             }
         }

@@ -57,6 +57,8 @@
                                 
     NSDictionary *attributes = [(NavigationController*)self.navigationController textAttributes_Font];
     
+    
+    
     [buttonItem setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [buttonItem setTitleTextAttributes:attributes forState:UIControlStateHighlighted];
@@ -88,12 +90,11 @@
 -(void)setupStateIdle {
     [self.canvas setNeedsLayout];
     for (MyButton *button in self.buttonsOnScreen) {
-        if ([button.titleLabel.text isEqual:@"Share"] || [button.titleLabel.text isEqual:@"Draw"]) {
-                 [button setupEnabled];
-             }
-             if ([button.titleLabel.text isEqual:@"Draw"]) {
-                 [button setTitle:@"Reset" forState:UIControlStateNormal];
-             }
+        if ([button.titleLabel.text isEqual:@"Share"]) {
+            [button setupDisenabled];
+        } else {
+            [button setupEnabled];
+        }
     }
 }
 
