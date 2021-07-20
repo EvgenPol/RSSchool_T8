@@ -20,8 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CanvasView : UIView
 
-@property (nonatomic) float time;
-@property (nonatomic, readwrite) DrawingObject drawingObject;
 @property (strong, nonatomic) NSArray<CAShapeLayer*> *arrayShapeLayer;
 @property (weak, nonatomic, nullable) id<CanvasViewDelegate> delegate;
 
