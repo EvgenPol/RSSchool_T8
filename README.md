@@ -7,8 +7,7 @@
 Так же все цвета и иконки были добавлены в асетс. Верстка частично из кода, и частично в storyboard-е.
 Все остальные файлы располагаются в соответствующих папках.
 
-Если есть какие то вопросы, то можно написать мне в дискорд)
-
+Если есть какие то вопросы, то можно написать мне в дискорд) : **EvgenPol#7842**
 
 Более подробно о каждой папке:
 
@@ -45,5 +44,23 @@
     
     
   ***-8) UIBezierPath_DrawingStuff*** - Здесь реализована категория для UIBezierPath, с методами класса для получения определенного пути.
+
+
+# Фотографии Проекта:
+
+![FotoOne](https://user-images.githubusercontent.com/78258561/127765949-b86a8fd4-150f-47e9-be60-241cbc8c8507.png)
+
+![FotoTwo](https://user-images.githubusercontent.com/78258561/127765953-de1f9939-f63d-45b9-804a-54980145bec9.png)
+
+![FotoThree](https://user-images.githubusercontent.com/78258561/127765956-6d89976b-47c6-4c38-baa9-25b2f345eff0.png)
+
+![FotoFive](https://user-images.githubusercontent.com/78258561/127765962-72ffb05c-9831-402e-9b4e-dc5c629a60d4.png)
+
+![FotoSix](https://user-images.githubusercontent.com/78258561/127765968-6015ad45-cf26-4dce-a04a-2ef205bb5daf.png)
+
+![FotoSeven](https://user-images.githubusercontent.com/78258561/127765972-9e96fc0e-d311-4c8e-bac2-847c836de1e4.png)
+
+
+
 
 
